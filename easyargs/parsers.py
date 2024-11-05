@@ -106,7 +106,12 @@ def function_parser(function, parser):
     main_text, params_help = parser_help_text(help_text)
 
     # Get the function information
-    args, varargs, keywords, defaults = inspect.getargspec(function)
+    full_arg_spec = inspect.getfullargspec(function)
+    args = full_arg_spec.args
+    varargs = full_arg_spec.varargs
+    keywords = full_arg_spec.kwonlydefaults
+    defaults = full_arg_spec.defaults
+
     if args is None:
         args = []
 
